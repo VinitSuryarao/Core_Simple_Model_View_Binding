@@ -1,0 +1,106 @@
+﻿
+
+
+@model _7_Simple_Model_View_Binding.ViewModel.ClientUIModel
+
+<h1>Simple Model View Binding</h1>
+
+@*This is For Calling Form From Tag Helper*@
+@*<form asp-controller="Client" asp-action="OnSubmit">*@
+@*This is For Calling Form From Javascript*@
+<form id="frmMain" method="post">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="form-group">
+                    <label for="txtFirstName">First Name:</label>
+                    <input id="txtFirstName" type="text" class="form-control" asp-for="ClientModel.FirstName" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="form-group">
+                    <label for="txtFirstName">Last Name:</label>
+                    <input id="txtFirstName" type="text" class="form-control" asp-for="ClientModel.LastName" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="form-group">
+                    <label for="txtFirstName">Contact:</label>
+                    <input id="txtFirstName" type="text" class="form-control" asp-for="ClientModel.CommuCommunicationModel.ContactNo" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="form-group">
+                    <label for="txtFirstName">Email ID:</label>
+                    <input id="txtFirstName" type="text" class="form-control" asp-for="ClientModel.CommuCommunicationModel.Email" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="form-group">
+                    <label for="txtFirstName"> ID:</label>
+                    <input id="txtFirstName" type="text" class="form-control" asp-for="ClientModel.LoginModel.ID" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="form-group">
+                    <label for="txtFirstName"> Password:</label>
+                    <input id="txtFirstName" type="text" class="form-control" asp-for="ClientModel.LoginModel.Password" />
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-12">
+                @* Call Action using Tag Helper **@
+                @*<input id="btnSubmit" type="submit" class="btn btn-primary" value="Submit" />
+                    <input id="btnCallIndex" type="submit" class="btn btn-danger" value="Call Index" />*@
+
+                @* Call Action using Javascript **@
+                <input id="btnSubmit" type="submit" class="btn btn-primary" value="Submit" onclick="OnSubmitClient()" />
+                <input id="btnCallIndex" type="submit" class="btn btn-danger" value="Call Index" onclick="OnIndexClient()" />
+
+            </div>
+        </div>
+    </div>
+</form>
+
+
+
+@section Scripts{
+
+    <script type="text/javascript">
+
+        function OnSubmitClient() {
+
+            $("#frmMain").attr("action", '@Url.Action("OnSubmit","Client")');
+            $("#frmMain").submit();
+
+        }
+
+        function OnIndexClient() {
+            $("#frmMain").attr("action", '@Url.Action("Index","Client")');
+            $("#frmMain").submit();
+        }
+    </script>
+}
